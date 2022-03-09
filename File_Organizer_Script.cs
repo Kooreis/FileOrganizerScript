@@ -1,11 +1,10 @@
-using System;
-using System.IO;
-
-class Program
+try
 {
-    static void Main(string[] args)
+    var txtFiles = Directory.EnumerateFiles(sourceDirectory, "*.txt");
+
+    foreach (string currentFile in txtFiles)
     {
-        string sourceDirectory = args[0];
-        string destinationDirectory = args[1];
+        string fileName = currentFile.Substring(sourceDirectory.Length + 1);
+        Directory.Move(currentFile, Path.Combine(destinationDirectory, fileName));
     }
 }
